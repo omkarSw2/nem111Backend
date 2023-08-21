@@ -1,11 +1,11 @@
 const jwt = require("jsonwebtoken");
 const { BlackListModel } = require("../Model/blackListModel");
 
-const auth = (req, res, next) => {
+const auth = async (req, res, next) => {
   const headers = req.headers.authorization;
   try {
     if (headers) {
-      const blacklist = await.BlackListModel.find({
+      const blacklist = await BlackListModel.find({
         blacklist: { $in: headers },
       });
       if (blacklist.length > 0) {
